@@ -4,6 +4,7 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import display.Display;
+import gfx.GameCamera;
 import input.KeyManager;
 import states.GameState;
 import states.MenuState;
@@ -29,6 +30,9 @@ public class Game extends Canvas implements Runnable{
 	//Key manager
 	private KeyManager keyManager;
 	
+	//Camera
+	private GameCamera gameCamera;
+	
 	public Game(String title, int width, int height) {
 		this.title = title;
 		this.width = width;
@@ -40,9 +44,24 @@ public class Game extends Canvas implements Runnable{
 		return keyManager;
 	}
 	
+	public GameCamera getGameCamera() {
+		return gameCamera;
+	}
+	
+	public int getWidht() {
+		return width;
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+	
 	private void init() {
 		display = new Display(title, width, height);
 		display.getFrame().addKeyListener(keyManager);
+		
+		gameCamera = new GameCamera(this, 0, 0);
+		
 		gameState = new GameState(this);
 		menuState = new MenuState(this);
 		State.setState(gameState);

@@ -30,7 +30,8 @@ public class World {
 	public void render(Graphics g) {
 		for (int i = 0 ; i < height ; i++) {
 			for (int j = 0 ; j < width ; j++) {
-				getTile(i,j).render(g, j * Tile.TILE_WIDTH, i * Tile.TILE_HEIGHT);
+				getTile(i,j).render(g, (int)(j * Tile.TILE_WIDTH - game.getGameCamera().getxOffset()), 
+						               (int)(i * Tile.TILE_HEIGHT - game.getGameCamera().getyOffset()));
 			}
 		}
 	}

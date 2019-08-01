@@ -1,13 +1,19 @@
 package gfx;
 
+import entities.Entity;
+import main.Game;
+
 public class GameCamera {
+	
+	private Game game;
 	
 	private float xOffset;
 	private float yOffset;
 	
-	public GameCamera(float xOffset, float yOffset) {
+	public GameCamera(Game game, float xOffset, float yOffset) {
 		this.xOffset = xOffset;
 		this.yOffset = yOffset;
+		this.game = game;
 	}
 
 	public float getxOffset() {
@@ -26,7 +32,13 @@ public class GameCamera {
 		this.yOffset = yOffset;
 	}
 	
+	public void centerOnEntity(Entity e) {
+		xOffset = e.getX() - game.getWidht() / 2 + e.getWidth() / 2;
+		yOffset = e.getY() - game.getHeight() / 2 + e.getHeight() / 2;
+	}
+	
 	public void move(float xAmt, float yAmt) {
-		 
+		 xOffset += xAmt;
+		 yOffset += yAmt;
 	}
 }
