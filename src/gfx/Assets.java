@@ -4,12 +4,13 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import tiles.Tile;
+
 public class Assets {
 
 	private static final int width = 32, height = 32;
 	
 	public static ArrayList<ArrayList<BufferedImage>> player;
-	public static ArrayList<ArrayList<BufferedImage>> tileset;
 	
 	//Temporary
 	public static BufferedImage grassTile;
@@ -40,10 +41,15 @@ public class Assets {
 	}
 	
 	public static void setTileset(SpriteSheet sheet) {
-		tileset = init(sheet);
-		grassTile = tileset.get(15).get(1);
-		dirtTile = tileset.get(12).get(0);
-		rockTile = tileset.get(32).get(7);
+		ArrayList<ArrayList<BufferedImage >> textures = init(sheet);
+		
+		//commenter si bug
+		//Tile.initTileset(textures);
+		
+		// à supprimer
+		grassTile = textures.get(15).get(1);
+		dirtTile = textures.get(12).get(0);
+		rockTile = textures.get(32).get(7);
 	}
 	
 	public static void displayAssets(ArrayList<ArrayList<BufferedImage>> assets, Graphics g) {

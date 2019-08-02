@@ -2,10 +2,15 @@ package tiles;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
+import gfx.Assets;
+import gfx.ImageLoader;
+import gfx.SpriteSheet;
 
 public class Tile {
 
-	public static Tile[] tiles = new Tile[256];
+	public static Tile[] tiles = new Tile[2048];
 	public static Tile grassTile = new GrassTile(0);
 	public static Tile dirtTile = new DirtTile(1);
 	public static Tile rockTile = new RockTile(2);
@@ -16,8 +21,13 @@ public class Tile {
 	protected BufferedImage texture;
 	protected final int id;
 	
-	public static void initTileset(String path) {
-		
+	public static void initTileset(ArrayList<ArrayList<BufferedImage>> textures) {
+		int id = 0;
+		for(int i = 0 ; i < textures.size() ; i++) {
+			for (int j = 0 ; j < textures.get(i).size() ; j++) {
+				tiles[id] = new Tile(textures.get(i).get(j), id);
+			}
+		}
 	}
 	
 	public Tile(BufferedImage texture, int id) {
