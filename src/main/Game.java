@@ -14,7 +14,7 @@ public class Game extends Canvas implements Runnable{
 
 	private Display display;
 	private String title;
-	private int width, height;
+	public int width, height;
 	
 	private Thread thread;
 	
@@ -49,11 +49,11 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	public int getWidht() {
-		return width;
+		return this.width;
 	}
 	
 	public int getHeight() {
-		return height;
+		return this.height;
 	}
 	
 	private void init() {
