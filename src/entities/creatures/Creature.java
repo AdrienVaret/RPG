@@ -118,7 +118,18 @@ public abstract class Creature extends Entity{
 	}
 	
 	protected boolean collisionWithTile(int x, int y) {
-		return handler.getWorld().getTile(y, x).isSolid();
+		//return handler.getWorld().getTile(y, x).isSolid();
+		
+		//methode avec les layers multiples
+		for (int layer = 2 ; layer > -1 ; layer --) {
+			Tile tile = handler.getWorld().getTile2(y, x, layer);
+			if (tile != null) {
+				return tile.isSolid();
+			}
+		}
+		
+		return false;
+		
 		//TODO: changer pour les layers multiples
 	}
 

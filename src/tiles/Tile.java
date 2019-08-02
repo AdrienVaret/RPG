@@ -26,6 +26,7 @@ public class Tile {
 		for(int i = 0 ; i < textures.size() ; i++) {
 			for (int j = 0 ; j < textures.get(i).size() ; j++) {
 				tiles[id] = new Tile(textures.get(i).get(j), id);
+				id ++;
 			}
 		}
 	}

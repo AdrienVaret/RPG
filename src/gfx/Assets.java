@@ -44,7 +44,7 @@ public class Assets {
 		ArrayList<ArrayList<BufferedImage >> textures = init(sheet);
 		
 		//commenter si bug
-		//Tile.initTileset(textures);
+		Tile.initTileset(textures);
 		
 		// à supprimer
 		grassTile = textures.get(15).get(1);
