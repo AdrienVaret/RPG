@@ -28,6 +28,11 @@ public class Player extends Creature{
 		bounds.width = 14;
 		bounds.height = 11;
 		
+		//bounds.x = 0;
+		//bounds.y = 0;
+		//bounds.width = 32;
+		//bounds.height = 32;
+		
 		//this.game = game;
 		lastDirection = DOWN;
 		row = DOWN;
@@ -116,9 +121,9 @@ public class Player extends Creature{
 				(int) (y - handler.getGameCamera().getyOffset()), width, height, null); //.get 0, 0 avant
 		
 		g.setColor(Color.RED);
-		g.fillRect((int)(x + bounds.x - handler.getGameCamera().getxOffset()),
-				   (int)(y + bounds.y - handler.getGameCamera().getyOffset()),
-				   bounds.width, bounds.height);
+		//g.fillRect((int)(x + bounds.x - handler.getGameCamera().getxOffset()),
+		//		   (int)(y + bounds.y - handler.getGameCamera().getyOffset()),
+		//		   bounds.width, bounds.height);
 	}
 
 }

@@ -1,7 +1,6 @@
 package entities.creatures;
 
 import entities.Entity;
-import main.Game;
 import main.Handler;
 import tiles.Tile;
 
@@ -71,7 +70,11 @@ public abstract class Creature extends Entity{
 			if (!collisionWithTile(tx, (int)(y + bounds.y) / Tile.TILE_HEIGHT) && 
 				!collisionWithTile(tx, (int)(y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)) {
 				x += xMove;
-			}	
+				
+			} else {
+				
+				x = tx * Tile.TILE_WIDTH - bounds.x - bounds.width - 1;
+			}
 		} 
 		
 		else if (xMove < 0) { //LEFT
@@ -80,13 +83,15 @@ public abstract class Creature extends Entity{
 			if (!collisionWithTile(tx, (int)(y + bounds.y) / Tile.TILE_HEIGHT) && 
 				!collisionWithTile(tx, (int)(y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)) {
 				x += xMove;
+				
+			} else {
+				 x = tx * Tile.TILE_WIDTH + Tile.TILE_WIDTH - bounds.x;
 			}
 		}
 		
 	}
 	
 	public void moveY() {
-		//y += yMove;
 		
 		if (yMove < 0) { //UP
 			int ty = (int) (y + yMove + bounds.y) / Tile.TILE_HEIGHT;
@@ -94,6 +99,8 @@ public abstract class Creature extends Entity{
 			if (!collisionWithTile((int) (x + bounds.x) / Tile.TILE_WIDTH, ty) &&
 				!collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILE_WIDTH, ty)) {
 				y += yMove;
+			} else {
+				y = ty * Tile.TILE_HEIGHT + Tile.TILE_HEIGHT - bounds.y;
 			}
 		}
 		
@@ -103,6 +110,8 @@ public abstract class Creature extends Entity{
 			if (!collisionWithTile((int) (x + bounds.x) / Tile.TILE_WIDTH, ty) &&
 				!collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILE_WIDTH, ty)) {
 				y += yMove;
+			} else {
+				y = ty * Tile.TILE_HEIGHT - bounds.y - bounds.height - 1;
 			}
 		}
 		
