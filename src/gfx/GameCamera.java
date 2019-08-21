@@ -39,6 +39,6 @@ public class GameCamera {
 	
 	public void move(float xAmt, float yAmt) {
 		 xOffset += xAmt;
-		 yOffset += yAmt;
+		 yOffset += yAmt; 
 	}
 }
