@@ -22,7 +22,7 @@ public class Launcher {
 	public static void main(String[] args) {
 		initTextures();
 		//Game game = new Game("Tiled Game", 500, 382);
-		Game game = new Game("Nograd", 320, 320);
+		Game game = new Game("Nograd", 300, 300);
 		game.start();
 	}
 }
