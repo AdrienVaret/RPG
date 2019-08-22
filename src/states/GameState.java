@@ -18,7 +18,7 @@ public class GameState extends State{
 		//world = new World(handler, "res/worlds/test_world_layer.map");
 		world = new World(handler, "res/worlds/test_big_world_layer.map");
 		handler.setWorld(world);
-		player = new Player(handler, 100, 100);
+		player = new Player(handler, 3008, 512); //100, 100 AVT
 		
 	}
 	

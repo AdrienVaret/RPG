@@ -12,11 +12,6 @@ public class Assets {
 	
 	public static ArrayList<ArrayList<BufferedImage>> player;
 	
-	//Temporary
-	public static BufferedImage grassTile;
-	public static BufferedImage dirtTile;
-	public static BufferedImage rockTile;
-	
 	public static ArrayList<ArrayList<BufferedImage>> init(SpriteSheet sheet) {
 	
 		ArrayList<ArrayList<BufferedImage>> assets = new ArrayList<ArrayList<BufferedImage>>();
@@ -45,11 +40,6 @@ public class Assets {
 		
 		//commenter si bug
 		Tile.initTileset(textures);
-		
-		// à supprimer
-		grassTile = textures.get(15).get(1);
-		dirtTile = textures.get(12).get(0);
-		rockTile = textures.get(32).get(7);
 	}
 	
 	public static void displayAssets(ArrayList<ArrayList<BufferedImage>> assets, Graphics g) {
