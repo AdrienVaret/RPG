@@ -18,6 +18,12 @@ public class Tile {
 	protected BufferedImage texture;
 	protected final int id;
 	
+	/*
+	 * Used for define tile's solidity
+	 * 0 : non solid
+	 * 1 : solid
+	 * 2 : transparent (hide the player)
+	 */
 	private int solidity;
 	
 	public static void initTileset(ArrayList<ArrayList<BufferedImage>> textures) {
@@ -34,6 +40,7 @@ public class Tile {
 				solidities.add(Integer.parseInt(splittedLine[1]));
 			}
 			
+			r.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -43,15 +50,16 @@ public class Tile {
 		for(int i = 0 ; i < textures.size() ; i++) {
 			for (int j = 0 ; j < textures.get(i).size() ; j++) {
 				int solidity = solidities.get(id);
-				tiles[id] = new Tile(textures.get(i).get(j), id);
+				tiles[id] = new Tile(textures.get(i).get(j), id, solidity);
 				id ++;
 			}
 		}
 	}
 	
-	public Tile(BufferedImage texture, int id) {
+	public Tile(BufferedImage texture, int id, int solidity) {
 		this.texture = texture;
 		this.id = id;
+		this.solidity = solidity;
 		tiles[id] = this;
 	}
 	
@@ -60,7 +68,11 @@ public class Tile {
 	}
 	
 	public boolean isSolid() {
-		return false;
+		return (solidity == 1);
+	}
+	
+	public boolean hidePlayer() {
+		return (solidity == 2);
 	}
 	
 	public void tick() {

@@ -60,13 +60,12 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	private void init() {
+		
 		display = new Display(title, width, height);
 		display.getFrame().addKeyListener(keyManager);
 		
 		handler = new Handler(this);
 		gameCamera = new GameCamera(handler, 0, 0);
-		
-		
 		
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);

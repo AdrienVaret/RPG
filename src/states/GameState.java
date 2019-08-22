@@ -2,9 +2,7 @@ package states;
 
 import java.awt.Graphics;
 import entities.creatures.Player;
-import main.Game;
 import main.Handler;
-import tiles.Tile;
 import worlds.World;
 
 public class GameState extends State{
@@ -14,8 +12,6 @@ public class GameState extends State{
 	
 	public GameState(Handler handler) {
 		super(handler);
-		//world = new World(handler, "res/worlds/world2.txt");
-		//world = new World(handler, "res/worlds/test_world_layer.map");
 		world = new World(handler, "res/worlds/test_big_world_layer.map");
 		handler.setWorld(world);
 		player = new Player(handler, 3008, 512); //100, 100 AVT

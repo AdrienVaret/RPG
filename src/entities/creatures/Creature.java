@@ -121,16 +121,22 @@ public abstract class Creature extends Entity{
 		//return handler.getWorld().getTile(y, x).isSolid();
 		
 		//methode avec les layers multiples
+		/*
 		for (int layer = 2 ; layer > -1 ; layer --) {
 			Tile tile = handler.getWorld().getTile(y, x, layer);
 			if (tile != null) {
 				return tile.isSolid();
 			}
 		}
+		*/
+		
+		for (int layer = 0 ; layer < 3 ; layer ++) {
+			Tile tile = handler.getWorld().getTile(y, x, layer);
+			if (tile != null && tile.isSolid()) return true;
+		}
 		
 		return false;
-		
-		//TODO: changer pour les layers multiples
+
 	}
 
 }
