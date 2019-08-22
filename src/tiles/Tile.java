@@ -2,11 +2,11 @@ package tiles;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
-
-import gfx.Assets;
-import gfx.ImageLoader;
-import gfx.SpriteSheet;
 
 public class Tile {
 
@@ -21,9 +21,28 @@ public class Tile {
 	private int solidity;
 	
 	public static void initTileset(ArrayList<ArrayList<BufferedImage>> textures) {
+		
+		//Reading solidity file
+		ArrayList<Integer> solidities = new ArrayList<Integer>();
+		
+		try {
+			BufferedReader r = new BufferedReader(new FileReader(new File("res/textures/solidity.data")));
+			String line = null;
+			
+			while((line = r.readLine()) != null) {
+				String [] splittedLine = line.split(" ");
+				solidities.add(Integer.parseInt(splittedLine[1]));
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		//Creating tiles objects
 		int id = 0;
 		for(int i = 0 ; i < textures.size() ; i++) {
 			for (int j = 0 ; j < textures.get(i).size() ; j++) {
+				int solidity = solidities.get(id);
 				tiles[id] = new Tile(textures.get(i).get(j), id);
 				id ++;
 			}
