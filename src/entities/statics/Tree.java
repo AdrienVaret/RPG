@@ -8,7 +8,7 @@ import tiles.Tile;
 public class Tree extends StaticEntity{
 
 	public Tree(Handler handler, float x, float y) {
-		super(handler, x, y, Tile.TILE_WIDTH, Tile.TILE_HEIGHT); // Height * 2 dans le tuto
+		super(handler, x, y, Tile.TILE_WIDTH, Tile.TILE_HEIGHT);
 	}
 
 	@Override
@@ -23,4 +23,7 @@ public class Tree extends StaticEntity{
 				                                   width, height, null);
 	}
 
+	public void contactAction() {
+		System.out.println("Attention à l'arbre !");
+	}
 }

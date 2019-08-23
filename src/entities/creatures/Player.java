@@ -24,7 +24,7 @@ public class Player extends Creature{
 	
 	public Player(Handler handler, float x, float y) {
 	
-		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
+		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, false);
 		
 		//Defining collisions bounds
 		bounds.x = 9;
@@ -177,4 +177,7 @@ public class Player extends Creature{
 				(int) (y - handler.getGameCamera().getyOffset()), width, height, null); //.get 0, 0 avant
 	}
 
+	public void contactAction() {
+		//DO_NOTHING
+	}
 }

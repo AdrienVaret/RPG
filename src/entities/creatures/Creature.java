@@ -17,8 +17,8 @@ public abstract class Creature extends Entity{
 	protected float xMove;
 	protected float yMove;
 	
-	public Creature(Handler handler, float x, float y, int width, int height) {
-		super(handler, x, y, width, height);
+	public Creature(Handler handler, float x, float y, int width, int height, boolean actionnable) {
+		super(handler, x, y, width, height, actionnable);
 		health = DEFAULT_HEALTH;
 		speed = DEFAULT_SPEED;
 		xMove = 0;
@@ -58,8 +58,10 @@ public abstract class Creature extends Entity{
 	}
 	
 	public void move() {
-		moveX();
-		moveY();
+		if (!checkEntityCollisions(xMove, 0f))
+			moveX();
+		if (!checkEntityCollisions(0f, yMove))
+			moveY();
 	}
 	
 	public void moveX() {

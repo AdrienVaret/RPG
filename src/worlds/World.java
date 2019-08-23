@@ -43,6 +43,10 @@ public class World {
 		return height;
 	}
 	
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+	
 	public void tick() {
 		entityManager.tick();
 	}
