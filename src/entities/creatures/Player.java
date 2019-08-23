@@ -12,7 +12,7 @@ public class Player extends Creature{
 	private final int LEFT = 1;
 	private final int RIGHT = 2;
 	private final int UP = 3;
-	private final int ANIM_SPEED = 250;
+	private final int DEFAULT_ANIM_SPEED = 250;
 	
 	//Timer variable
 	private long timer, lastTime;
@@ -20,6 +20,7 @@ public class Player extends Creature{
 	//Direction variables
 	int lastDirection;
 	private int direction, frame;
+	private int ANIM_SPEED = DEFAULT_ANIM_SPEED;
 	
 	public Player(Handler handler, float x, float y) {
 	
@@ -53,8 +54,14 @@ public class Player extends Creature{
 		 xMove = 0;
 		 yMove = 0;
 		 
-		 if (handler.getKeyManager().run)
-			 System.out.println("run !");
+		 if (handler.getKeyManager().run) {
+			 speed = DEFAULT_SPEED * 2;
+			 ANIM_SPEED = DEFAULT_ANIM_SPEED / 2;
+		 }
+		 else {
+			 speed = DEFAULT_SPEED;
+			 ANIM_SPEED = DEFAULT_ANIM_SPEED;
+		 }
 		 
 		 if (handler.getKeyManager().up) {
 				
