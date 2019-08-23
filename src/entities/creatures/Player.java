@@ -1,37 +1,44 @@
 package entities.creatures;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import gfx.Assets;
 import main.Handler;
 
 public class Player extends Creature{
 	
-	int DOWN = 0;
-	int LEFT = 1;
-	int RIGHT = 2;
-	int UP = 3;
-
-	int lastDirection; //0 : DOWN, 1 : LEFT, 2 : RIGHT, 3 : UP
 	
-	private int row, column;
+	//Constants variables
+	private final int DOWN = 0;
+	private final int LEFT = 1;
+	private final int RIGHT = 2;
+	private final int UP = 3;
+	private final int ANIM_SPEED = 250;
+	
+	//Timer variable
+	private long timer, lastTime;
+	
+	//Direction variables
+	int lastDirection;
+	private int direction, frame;
 	
 	public Player(Handler handler, float x, float y) {
+	
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
 		
+		//Defining collisions bounds
 		bounds.x = 9;
 		bounds.y = 21;
 		bounds.width = 14;
 		bounds.height = 11;
 		
-		//bounds.x = 0;
-		//bounds.y = 0;
-		//bounds.width = 32;
-		//bounds.height = 32;
-		
+		//Initialising direction
 		lastDirection = DOWN;
-		row = DOWN;
-		column = 0;
+		direction = DOWN;
+		frame = 0;
+		
+		//Initialising timer
+		timer = 0;
+		lastTime = System.currentTimeMillis();
 	}
 
 	@Override
@@ -41,21 +48,36 @@ public class Player extends Creature{
 		handler.getGameCamera().centerOnEntity(this);
 	}
 	
+
 	private void getInput() {
 		 xMove = 0;
 		 yMove = 0;
 		 
+		 if (handler.getKeyManager().run)
+			 System.out.println("run !");
+		 
 		 if (handler.getKeyManager().up) {
 				
 				if (lastDirection != UP) {
-					row = UP;
-					column = 0;
+					
+					timer = 0;
+					lastTime = System.currentTimeMillis();
+					direction = UP;
+					frame = 0;
 					lastDirection = UP;
+					
 				} else {
-					if (column + 1 > 2) 
-						column = 0;
-					else
-						column ++;
+					
+					timer += System.currentTimeMillis() - lastTime;
+					lastTime = System.currentTimeMillis();
+					
+					if (timer > ANIM_SPEED) {
+						timer = 0;
+						if (frame + 1 > 2) 
+							frame = 0;
+						else
+							frame ++;
+					}
 				}
 				
 				yMove = -speed;
@@ -64,14 +86,26 @@ public class Player extends Creature{
 			if (handler.getKeyManager().down) {
 				
 				if (lastDirection != DOWN) {
-					row = DOWN;
-					column = 0;
+					
+					timer = 0;
+					lastTime = System.currentTimeMillis();
+					direction = DOWN;
+					frame = 0;
 					lastDirection = DOWN;
+					
 				} else {
-					if (column + 1 > 2) 
-						column = 0;
-					else
-						column ++;
+					
+					
+					timer += System.currentTimeMillis() - lastTime;
+					lastTime = System.currentTimeMillis();
+					
+					if (timer > ANIM_SPEED) {
+						timer = 0;
+						if (frame + 1 > 2) 
+							frame = 0;
+						else
+							frame ++;
+					}
 				}
 				
 				yMove = speed;
@@ -80,14 +114,24 @@ public class Player extends Creature{
 			if (handler.getKeyManager().left) {
 				
 				if (lastDirection != LEFT) {
-					row = LEFT;
-					column = 0;
+					
+					timer = 0;
+					lastTime = System.currentTimeMillis();
+					direction = LEFT;
+					frame = 0;
 					lastDirection = LEFT;
+					
 				} else {
-					if (column + 1 > 2) 
-						column = 0;
-					else
-						column ++;
+					timer += System.currentTimeMillis() - lastTime;
+					lastTime = System.currentTimeMillis();
+					
+					if (timer > ANIM_SPEED) {
+						timer = 0;
+						if (frame + 1 > 2) 
+							frame = 0;
+						else
+							frame ++;
+					}
 				}
 				
 				xMove = -speed;
@@ -96,14 +140,24 @@ public class Player extends Creature{
 			if (handler.getKeyManager().right) {
 				
 				if (lastDirection != RIGHT) {
-					row = RIGHT;
-					column = 0;
+					
+					timer = 0;
+					lastTime = System.currentTimeMillis();
+					direction = RIGHT;
+					frame = 0;
 					lastDirection = RIGHT;
+					
 				} else {
-					if (column + 1 > 2) 
-						column = 0;
-					else
-						column ++;
+					timer += System.currentTimeMillis() - lastTime;
+					lastTime = System.currentTimeMillis();
+					
+					if (timer > ANIM_SPEED) {
+						timer = 0;
+						if (frame + 1 > 2) 
+							frame = 0;
+						else
+							frame ++;
+					}
 				}
 				
 				xMove = speed;
@@ -112,10 +166,8 @@ public class Player extends Creature{
 	
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.player.get(row).get(column), (int)(x - handler.getGameCamera().getxOffset()), 
+		g.drawImage(Assets.player.get(direction).get(frame), (int)(x - handler.getGameCamera().getxOffset()), 
 				(int) (y - handler.getGameCamera().getyOffset()), width, height, null); //.get 0, 0 avant
-		
-		g.setColor(Color.RED);
 	}
 
 }

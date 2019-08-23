@@ -7,7 +7,7 @@ import tiles.Tile;
 public abstract class Creature extends Entity{
 
 	public static final int DEFAULT_HEALTH = 10;
-	public static final float DEFAULT_SPEED = 3.0f;
+	public static final float DEFAULT_SPEED = 2.0f; //3.0f initialement
 	public static final int DEFAULT_CREATURE_WIDTH = 32; 
 	public static final int DEFAULT_CREATURE_HEIGHT = 32;
 	
@@ -117,26 +117,13 @@ public abstract class Creature extends Entity{
 		
 	}
 	
-	protected boolean collisionWithTile(int x, int y) {
-		//return handler.getWorld().getTile(y, x).isSolid();
-		
-		//methode avec les layers multiples
-		/*
-		for (int layer = 2 ; layer > -1 ; layer --) {
-			Tile tile = handler.getWorld().getTile(y, x, layer);
-			if (tile != null) {
-				return tile.isSolid();
-			}
-		}
-		*/
-		
+	protected boolean collisionWithTile(int x, int y) {		
 		for (int layer = 0 ; layer < 3 ; layer ++) {
 			Tile tile = handler.getWorld().getTile(y, x, layer);
 			if (tile != null && tile.isSolid()) return true;
 		}
 		
 		return false;
-
 	}
 
 }
