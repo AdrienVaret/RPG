@@ -10,7 +10,6 @@ public class Launcher {
 	
 	public static void initTextures() {
 		BufferedImage playerSprite = ImageLoader.loadImage("/textures/sprite.png");
-		//BufferedImage tileset = ImageLoader.loadImage("/textures/tileset.png");
 		BufferedImage tileset = ImageLoader.loadImage("/textures/final_rtp.png");
 		
 		SpriteSheet playerSheet = new SpriteSheet(playerSprite);
@@ -22,7 +21,6 @@ public class Launcher {
 	
 	public static void main(String[] args) {
 		initTextures();
-		//Game game = new Game("Tiled Game", 500, 382);
 		Game game = new Game("Nograd", 640, 640);
 		game.start();
 	}

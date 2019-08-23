@@ -5,10 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-
-import gfx.ImageLoader;
 import gfx.SpriteSheet;
 
 public class AutotileReader {
@@ -233,7 +230,6 @@ public class AutotileReader {
 	}
 	
 	public static void main(String[] args) {
-		//readAutotile("/textures/autotile.png");
 		try {
 			boolean intermediarWrites = false;
 			String inputFile = args[0];

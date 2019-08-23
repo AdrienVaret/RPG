@@ -14,7 +14,9 @@ public class World {
 	private int width;
 	private int height;
 	
+	@SuppressWarnings("unused")
 	private int spawnX;
+	@SuppressWarnings("unused")
 	private int spawnY;
 	
 	private int [][][] tiles;

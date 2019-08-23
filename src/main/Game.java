@@ -12,6 +12,7 @@ import states.State;
 
 public class Game extends Canvas implements Runnable{
 
+	private static final long serialVersionUID = 1L;
 	private Display display;
 	private String title;
 	public int width, height;
@@ -25,6 +26,7 @@ public class Game extends Canvas implements Runnable{
 	
 	//States
 	private State gameState;
+	@SuppressWarnings("unused")
 	private State menuState;
 	
 	//Key manager
@@ -78,6 +80,7 @@ public class Game extends Canvas implements Runnable{
 			State.getState().tick();
 	}
 	
+	@SuppressWarnings("unused")
 	private void update() {
 		
 	}
@@ -105,6 +108,7 @@ public class Game extends Canvas implements Runnable{
 		g.dispose();
 	}
 	
+	@SuppressWarnings("unused")
 	@Override
 	public void run() {
 		init();
@@ -156,7 +160,6 @@ public class Game extends Canvas implements Runnable{
 		try {
 			thread.join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
