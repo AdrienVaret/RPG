@@ -61,6 +61,10 @@ public class EntityManager {
 		return entities;
 	}
 
+	public Entity getEntity(int index) {
+		return entities.get(index);
+	}
+	
 	public void setEntities(ArrayList<Entity> entities) {
 		this.entities = entities;
 	}

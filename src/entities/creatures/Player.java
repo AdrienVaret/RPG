@@ -1,6 +1,11 @@
 package entities.creatures;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
+
+import entities.Entity;
+import entities.Entity.TypeAction;
 import gfx.Assets;
 import main.Handler;
 
@@ -22,9 +27,12 @@ public class Player extends Creature{
 	private int direction, frame;
 	private int ANIM_SPEED = DEFAULT_ANIM_SPEED;
 	
+	//Action checking
+	private boolean action = false;
+	
 	public Player(Handler handler, float x, float y) {
 	
-		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, false);
+		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, TypeAction.NONE);
 		
 		//Defining collisions bounds
 		bounds.x = 9;
@@ -49,11 +57,20 @@ public class Player extends Creature{
 		handler.getGameCamera().centerOnEntity(this);
 	}
 	
-
 	private void getInput() {
 		 xMove = 0;
 		 yMove = 0;
 		 
+		 //Checking action
+		 if (handler.getKeyManager().action && !action) {
+			 actionWithEntitiesAround(lastDirection);
+			 action = true;
+		 } else if (!handler.getKeyManager().action){
+			 action = false;
+		 }
+		 
+		 
+		 //Setting running speed modifications
 		 if (handler.getKeyManager().run) {
 			 speed = DEFAULT_SPEED * 2;
 			 ANIM_SPEED = DEFAULT_ANIM_SPEED / 4;
@@ -63,6 +80,7 @@ public class Player extends Creature{
 			 ANIM_SPEED = DEFAULT_ANIM_SPEED;
 		 }
 		 
+		 //Moving player and updating frame
 		 if (handler.getKeyManager().up) {
 				
 				if (lastDirection != UP) {
@@ -175,9 +193,14 @@ public class Player extends Creature{
 	public void render(Graphics g) {
 		g.drawImage(Assets.player.get(direction).get(frame), (int)(x - handler.getGameCamera().getxOffset()), 
 				(int) (y - handler.getGameCamera().getyOffset()), width, height, null); //.get 0, 0 avant
+		
+		g.setColor(Color.red);
+		Rectangle r = this.getCollisionBounds(0, 0);
+		g.drawRect((int) (x + r.x), (int) (y + r.y), r.width, r.height);
+		
 	}
 
-	public void contactAction() {
+	public void action() {
 		//DO_NOTHING
 	}
 }

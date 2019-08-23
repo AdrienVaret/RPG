@@ -16,13 +16,12 @@ public class KeyManager implements KeyListener{
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
-
+		//keys[e.getKeyCode()] = true;
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		keys[e.getKeyCode()] = true;
-		//System.out.println("Key pressed !");
 	}
 
 	@Override

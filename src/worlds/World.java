@@ -3,9 +3,11 @@ package worlds;
 import java.awt.Graphics;
 import java.util.regex.Pattern;
 
+import entities.creatures.NPC;
 import entities.creatures.Player;
 import entities.statics.EntityManager;
 import entities.statics.Tree;
+import entities.statics.Warp;
 import main.Handler;
 import tiles.Tile;
 import utils.Utils;
@@ -33,6 +35,8 @@ public class World {
 		
 		//Temporary
 		entityManager.addEntity(new Tree(handler, 86*32, 33*32));
+		entityManager.addEntity(new Warp(handler, 93*32, 14*32));
+		entityManager.addEntity(new NPC(handler, 84*32, 30*32, 32, 32, "/textures/sprite_2_32.png", "Bonjour !"));
 	}
 	
 	public int getWidth() {

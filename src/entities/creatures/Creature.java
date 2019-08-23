@@ -1,6 +1,7 @@
 package entities.creatures;
 
 import entities.Entity;
+import entities.Entity.TypeAction;
 import main.Handler;
 import tiles.Tile;
 
@@ -17,8 +18,8 @@ public abstract class Creature extends Entity{
 	protected float xMove;
 	protected float yMove;
 	
-	public Creature(Handler handler, float x, float y, int width, int height, boolean actionnable) {
-		super(handler, x, y, width, height, actionnable);
+	public Creature(Handler handler, float x, float y, int width, int height, TypeAction typeAction) {
+		super(handler, x, y, width, height, typeAction);
 		health = DEFAULT_HEALTH;
 		speed = DEFAULT_SPEED;
 		xMove = 0;
