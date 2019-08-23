@@ -3,6 +3,9 @@ package worlds;
 import java.awt.Graphics;
 import java.util.regex.Pattern;
 
+import entities.creatures.Player;
+import entities.statics.EntityManager;
+import entities.statics.Tree;
 import main.Handler;
 import tiles.Tile;
 import utils.Utils;
@@ -14,16 +17,22 @@ public class World {
 	private int width;
 	private int height;
 	
-	@SuppressWarnings("unused")
 	private int spawnX;
-	@SuppressWarnings("unused")
 	private int spawnY;
 	
 	private int [][][] tiles;
 	
+	private EntityManager entityManager;
+	
 	public World (Handler handler, String path) {
-		loadWorld(path);
 		this.handler = handler;
+		entityManager = new EntityManager(handler, new Player(handler, 3008, 512));
+		loadWorld(path);
+		entityManager.getPlayer().setX(spawnX);
+		entityManager.getPlayer().setY(spawnY);
+		
+		//Temporary
+		entityManager.addEntity(new Tree(handler, 86*32, 33*32));
 	}
 	
 	public int getWidth() {
@@ -35,11 +44,12 @@ public class World {
 	}
 	
 	public void tick() {
-		
+		entityManager.tick();
 	}
 	
 	public void render(Graphics g) {
 		
+		//Rendering tiles
 		int xStart = (int) Math.max(0, handler.getGameCamera().getxOffset() / Tile.TILE_WIDTH);
 		int xEnd = (int) Math.min(width, (handler.getGameCamera().getxOffset() + handler.getWidth()) / Tile.TILE_WIDTH + 1);
 		int yStart = (int) Math.max(0, handler.getGameCamera().getyOffset() / Tile.TILE_HEIGHT);
@@ -55,6 +65,10 @@ public class World {
 				}
 			}
 		}
+		
+		//Rendering entities
+		entityManager.render(g);
+		
 	}
 	
 	public Tile getTile(int x, int y, int layer) {

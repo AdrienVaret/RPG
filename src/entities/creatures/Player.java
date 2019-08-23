@@ -56,7 +56,7 @@ public class Player extends Creature{
 		 
 		 if (handler.getKeyManager().run) {
 			 speed = DEFAULT_SPEED * 2;
-			 ANIM_SPEED = DEFAULT_ANIM_SPEED / 2;
+			 ANIM_SPEED = DEFAULT_ANIM_SPEED / 4;
 		 }
 		 else {
 			 speed = DEFAULT_SPEED;

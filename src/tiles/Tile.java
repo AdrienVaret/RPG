@@ -79,6 +79,10 @@ public class Tile {
 		
 	}
 	
+	public BufferedImage getTexture() {
+		return texture;
+	}
+	
 	public void render(Graphics g, int x, int y) {
 		g.drawImage(texture, x, y, TILE_WIDTH, TILE_HEIGHT, null);
 	}
