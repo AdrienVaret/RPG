@@ -70,7 +70,7 @@ public class World {
 			for (int x = xStart ; x < xEnd ; x++) {
 				for (int layer = 0 ; layer < 3 ; layer ++) {
 					Tile tile = getTile(y,x, layer);
-					if (tile != null)
+					if (tile != null && !tile.hidePlayer())
 						tile.render(g, (int)(x * Tile.TILE_WIDTH - handler.getGameCamera().getxOffset()), 
 						               (int)(y * Tile.TILE_HEIGHT - handler.getGameCamera().getyOffset()));
 				}
@@ -80,6 +80,16 @@ public class World {
 		//Rendering entities
 		entityManager.render(g);
 		
+		for (int y = yStart ; y < yEnd ; y ++) {
+			for (int x = xStart ; x < xEnd ; x++) {
+				for (int layer = 0 ; layer < 3 ; layer ++) {
+					Tile tile = getTile(y,x, layer);
+					if (tile != null && tile.hidePlayer())
+						tile.render(g, (int)(x * Tile.TILE_WIDTH - handler.getGameCamera().getxOffset()), 
+						               (int)(y * Tile.TILE_HEIGHT - handler.getGameCamera().getyOffset()));
+				}
+			}
+		}
 	}
 	
 	public Tile getTile(int x, int y, int layer) {
