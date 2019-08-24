@@ -13,10 +13,6 @@ public class Player extends Creature{
 	
 	
 	//Constants variables
-	private final int DOWN = 0;
-	private final int LEFT = 1;
-	private final int RIGHT = 2;
-	private final int UP = 3;
 	private final int DEFAULT_ANIM_SPEED = 250;
 	
 	//Timer variable
@@ -192,12 +188,7 @@ public class Player extends Creature{
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(Assets.player.get(direction).get(frame), (int)(x - handler.getGameCamera().getxOffset()), 
-				(int) (y - handler.getGameCamera().getyOffset()), width, height, null); //.get 0, 0 avant
-		
-		g.setColor(Color.red);
-		Rectangle r = this.getCollisionBounds(0, 0);
-		g.drawRect((int) (x + r.x), (int) (y + r.y), r.width, r.height);
-		
+				(int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 	}
 
 	public void action() {
