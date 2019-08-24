@@ -203,4 +203,8 @@ public class Player extends Creature{
 	public void action() {
 		//DO_NOTHING
 	}
+	
+	public void turn(int direction) {
+		//DO_NOTHING
+	}
 }

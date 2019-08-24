@@ -3,9 +3,9 @@ package worlds;
 import java.awt.Graphics;
 import java.util.regex.Pattern;
 
+import entities.EntityManager;
 import entities.creatures.NPC;
 import entities.creatures.Player;
-import entities.statics.EntityManager;
 import entities.statics.Tree;
 import entities.statics.Warp;
 import main.Handler;

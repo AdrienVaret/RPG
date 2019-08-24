@@ -1,7 +1,6 @@
 package entities.creatures;
 
 import entities.Entity;
-import entities.Entity.TypeAction;
 import main.Handler;
 import tiles.Tile;
 
@@ -129,4 +128,5 @@ public abstract class Creature extends Entity{
 		return false;
 	}
 
+	public abstract void turn(int direction);
 }

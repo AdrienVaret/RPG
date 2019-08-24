@@ -6,14 +6,12 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import entities.Entity;
 import gfx.Assets;
 import gfx.ImageLoader;
 import gfx.SpriteSheet;
 import main.Handler;
-import tiles.Tile;
 
-public class NPC extends Entity{
+public class NPC extends Creature{
 
 	private String message;
 	private ArrayList<ArrayList<BufferedImage>> sprite;
@@ -59,4 +57,12 @@ public class NPC extends Entity{
 		System.out.println(message);
 	}
 
+	public void move() {
+		//TODO: takes move pattern and apply it (later)
+	}
+	
+	public void turn(int direction) {
+		this.direction = direction;
+		frame = 0;
+	}
 }

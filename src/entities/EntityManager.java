@@ -1,9 +1,8 @@
-package entities.statics;
+package entities;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import entities.Entity;
 import entities.creatures.Player;
 import main.Handler;
 

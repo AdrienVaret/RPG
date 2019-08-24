@@ -2,6 +2,8 @@ package entities;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+
+import entities.creatures.Creature;
 import main.Handler;
 
 public abstract class Entity {
@@ -72,29 +74,37 @@ public abstract class Entity {
 			if (lastDirection == 0) { //DOWN
 				r = new Rectangle ((int)(x + bounds.x), (int)(y + bounds.y + 2), bounds.width, bounds.height);
 			 	r2 = new Rectangle ((int)(e.getX() + e.getBounds().x), (int)(e.getY() + e.getBounds().y), e.getBounds().width, e.getBounds().height);
-			 	if(r.intersects(r2) && e.getTypeAction() == TypeAction.KEY_ACTION)
+			 	if(r.intersects(r2) && e.getTypeAction() == TypeAction.KEY_ACTION) {
 			 		e.action();
+			 		if (e instanceof Creature) ((Creature) e).turn(3); 
+			 	}
 			}
 			
 			if (lastDirection == 1) { //LEFT
 				r = new Rectangle ((int)(x + bounds.x - 2), (int)(y + bounds.y), bounds.width, bounds.height);
 			 	r2 = new Rectangle ((int)(e.getX() + e.getBounds().x), (int)(e.getY() + e.getBounds().y), e.getBounds().width, e.getBounds().height);
-			 	if(r.intersects(r2) && e.getTypeAction() == TypeAction.KEY_ACTION)
+			 	if(r.intersects(r2) && e.getTypeAction() == TypeAction.KEY_ACTION) {
 			 		e.action();
+			 		if (e instanceof Creature) ((Creature) e).turn(2); 
+			 	}
 			}
 			
 			if (lastDirection == 2) { //RIGHT
 				r = new Rectangle ((int)(x + bounds.x + 2), (int)(y + bounds.y), bounds.width, bounds.height);
 			 	r2 = new Rectangle ((int)(e.getX() + e.getBounds().x), (int)(e.getY() + e.getBounds().y), e.getBounds().width, e.getBounds().height);
-			 	if(r.intersects(r2) && e.getTypeAction() == TypeAction.KEY_ACTION)
+			 	if(r.intersects(r2) && e.getTypeAction() == TypeAction.KEY_ACTION) {
 			 		e.action();
+			 		if (e instanceof Creature) ((Creature) e).turn(1); 
+			 	}
 			}
 			
 			if (lastDirection == 3) { //UP
 				r = new Rectangle ((int)(x + bounds.x), (int)(y + bounds.y - 2), bounds.width, bounds.height);
 			 	r2 = new Rectangle ((int)(e.getX() + e.getBounds().x), (int)(e.getY() + e.getBounds().y), e.getBounds().width, e.getBounds().height);
-			 	if(r.intersects(r2) && e.getTypeAction() == TypeAction.KEY_ACTION)
+			 	if(r.intersects(r2) && e.getTypeAction() == TypeAction.KEY_ACTION) {
 			 		e.action();
+			 		if (e instanceof Creature) ((Creature) e).turn(0); 
+			 	}
 		 	}
 		}
 	}
