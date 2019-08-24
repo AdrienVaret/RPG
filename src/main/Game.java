@@ -4,7 +4,6 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import display.Display;
-import entities.statics.Tree;
 import gfx.GameCamera;
 import input.KeyManager;
 import states.GameState;

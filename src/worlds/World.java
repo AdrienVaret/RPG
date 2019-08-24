@@ -2,14 +2,10 @@ package worlds;
 
 import java.awt.Graphics;
 import java.util.regex.Pattern;
-
 import entities.Entity;
 import entities.EntityManager;
-import entities.creatures.NPC;
 import entities.creatures.Player;
-import entities.statics.GoldChest;
 import entities.statics.Tree;
-import entities.statics.Warp;
 import main.Handler;
 import tiles.Tile;
 import utils.EntityMaker;
@@ -38,9 +34,6 @@ public class World {
 		
 		//Temporary
 		entityManager.addEntity(new Tree(handler, 86*32, 33*32));
-		//entityManager.addEntity(new Warp(handler, 94*32, 15*32));
-		//entityManager.addEntity(new NPC(handler, 84*32, 30*32, 32, 32, "/textures/characters_sprites/sprite_2_32.png", "NPC", "Bonjour !"));
-		//entityManager.addEntity(new GoldChest(handler, 49*32, 20*32, Entity.DOWN, 1000));
 	}
 	
 	public int getWidth() {
