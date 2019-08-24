@@ -9,7 +9,7 @@ import gfx.SpriteSheet;
 public class Launcher {
 	
 	public static void initTextures() {
-		BufferedImage playerSprite = ImageLoader.loadImage("/textures/sprite.png");
+		BufferedImage playerSprite = ImageLoader.loadImage("/textures/characters_sprites/sprite.png");
 		BufferedImage tileset = ImageLoader.loadImage("/textures/final_rtp.png");
 		
 		SpriteSheet playerSheet = new SpriteSheet(playerSprite);

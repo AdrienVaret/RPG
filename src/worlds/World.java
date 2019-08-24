@@ -12,6 +12,7 @@ import entities.statics.Tree;
 import entities.statics.Warp;
 import main.Handler;
 import tiles.Tile;
+import utils.EntityMaker;
 import utils.Utils;
 
 public class World {
@@ -37,9 +38,9 @@ public class World {
 		
 		//Temporary
 		entityManager.addEntity(new Tree(handler, 86*32, 33*32));
-		entityManager.addEntity(new Warp(handler, 93*32, 14*32));
-		entityManager.addEntity(new NPC(handler, 84*32, 30*32, 32, 32, "/textures/sprite_2_32.png", "NPC", "Bonjour !"));
-		entityManager.addEntity(new GoldChest(handler, 49*32, 20*32, Entity.DOWN, 1000));
+		//entityManager.addEntity(new Warp(handler, 94*32, 15*32));
+		//entityManager.addEntity(new NPC(handler, 84*32, 30*32, 32, 32, "/textures/characters_sprites/sprite_2_32.png", "NPC", "Bonjour !"));
+		//entityManager.addEntity(new GoldChest(handler, 49*32, 20*32, Entity.DOWN, 1000));
 	}
 	
 	public int getWidth() {
@@ -60,7 +61,7 @@ public class World {
 	
 	public void render(Graphics g) {
 		
-		//Rendering tiles
+		//Rendering high priority tiles
 		int xStart = (int) Math.max(0, handler.getGameCamera().getxOffset() / Tile.TILE_WIDTH);
 		int xEnd = (int) Math.min(width, (handler.getGameCamera().getxOffset() + handler.getWidth()) / Tile.TILE_WIDTH + 1);
 		int yStart = (int) Math.max(0, handler.getGameCamera().getyOffset() / Tile.TILE_HEIGHT);
@@ -77,9 +78,10 @@ public class World {
 			}
 		}
 		
-		//Rendering entities
+		//Rendering player and entities
 		entityManager.render(g);
 		
+		//Rendering low priority tiles
 		for (int y = yStart ; y < yEnd ; y ++) {
 			for (int x = xStart ; x < xEnd ; x++) {
 				for (int layer = 0 ; layer < 3 ; layer ++) {
@@ -111,6 +113,7 @@ public class World {
 	}
 	
 	private void loadWorld(String path) {
+		
 		//Loading world file as a string
 		String file = Utils.loadFileAsString(path);
 		
@@ -140,6 +143,12 @@ public class World {
 				}
 				indexLine ++;
 			}
+		}
+		
+		//Loading entities
+		for (int i = indexLine ; i < tokens.length ; i++) {
+			Entity e = EntityMaker.buildEntity(tokens[i], handler);
+			entityManager.addEntity(e);
 		}
 	}
 }
