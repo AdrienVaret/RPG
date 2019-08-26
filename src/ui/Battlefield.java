@@ -130,10 +130,11 @@ public class Battlefield extends UIObject{
 		}
 		drawGrid(g);
 	}
-
+	
 	@Override
 	public void onClick() {
 		System.out.println("je clique sur le battlefield !");
+		System.out.println(handler.getMouseManager().getMouseX() + " " + handler.getMouseManager().getMouseY());
 	}
 
 }

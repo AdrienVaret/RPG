@@ -68,6 +68,10 @@ public class Game extends Canvas implements Runnable{
 		return this.height;
 	}
 	
+	public void resize(int width, int height) {
+		display.resize(width, height);
+	}
+	
 	private void init() {
 		
 		display = new Display(title, width, height);

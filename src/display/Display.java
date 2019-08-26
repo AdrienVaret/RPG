@@ -38,6 +38,10 @@ public class Display {
 		frame.pack();
 	}
 	
+	public void resize(int width, int height) {
+		frame.setSize(width, height);
+	}
+	
 	public Canvas getCanvas() {
 		return canvas;
 	}

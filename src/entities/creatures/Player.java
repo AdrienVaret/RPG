@@ -78,6 +78,7 @@ public class Player extends Creature{
 		 if (handler.getKeyManager().a && !shift) {
 			 System.out.print("Generating battlefield, player position = (" + x + ", " + y + ")");
 			 handler.getMouseManager().setUIManager(null);
+			 handler.getGame().resize(1200, 822);
 			 State.setState(new BattleState(handler, (int)x, (int)y));
 			 shift = true;
 		 } else if (!handler.getKeyManager().a) {
