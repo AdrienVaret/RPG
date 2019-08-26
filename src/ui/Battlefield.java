@@ -47,7 +47,7 @@ public class Battlefield extends UIObject{
 			xMax = tileX + halfGrid;
 		else {
 			xMax = handler.getWorld().getWidth() - 1;
-			xMaxLost = halfGrid + ((handler.getWorld().getWidth() - 1) - tileX);
+			xMaxLost = halfGrid - ((handler.getWorld().getWidth() - 1) - tileX);
 		}
 		
 		//Test if there is at least 12 tiles above player
@@ -63,7 +63,7 @@ public class Battlefield extends UIObject{
 			yMax = tileY + halfGrid;
 		else {
 			yMax = handler.getWorld().getHeight() - 1;
-			yMaxLost = halfGrid + ((handler.getWorld().getHeight() - 1) - tileY);
+			yMaxLost = halfGrid - ((handler.getWorld().getHeight() - 1) - tileY);
 		}
 		
 		//If some tiles was lost, trying to add them to the opposite side
@@ -103,21 +103,8 @@ public class Battlefield extends UIObject{
 		g.setColor(Color.DARK_GRAY);
 		for (int i = 0 ; i <= GRID_DIMENSION * Tile.TILE_WIDTH ; i += Tile.TILE_WIDTH) {
 			
-			if (i == 0 || i == GRID_DIMENSION * Tile.TILE_WIDTH)
 				g.drawLine(i, 0, i, GRID_DIMENSION * Tile.TILE_WIDTH);
-			else {
-				g.drawLine(i - 1, 0, i - 1, GRID_DIMENSION * Tile.TILE_WIDTH);
-				g.drawLine(i, 0, i, GRID_DIMENSION * Tile.TILE_WIDTH);
-				g.drawLine(i + 1, 0, i + 1, GRID_DIMENSION * Tile.TILE_WIDTH);
-			}
-			
-			if (i == 0 || i == GRID_DIMENSION * Tile.TILE_HEIGHT)
 				g.drawLine(0, i, GRID_DIMENSION * Tile.TILE_HEIGHT, i);
-			else {
-				g.drawLine(0, i - 1, GRID_DIMENSION * Tile.TILE_HEIGHT, i - 1);
-				g.drawLine(0, i, GRID_DIMENSION * Tile.TILE_HEIGHT, i);
-				g.drawLine(0, i + 1, GRID_DIMENSION * Tile.TILE_HEIGHT, i + 1);
-			}
 		}
 	}
 	
@@ -128,22 +115,25 @@ public class Battlefield extends UIObject{
 
 	@Override
 	public void render(Graphics g) {
-		for (int y = yMin ; y < yMax ; y ++) {
-			for (int x = xMin ; x < xMax ; x++) {
+		int line = 0;
+		for (int y = yMin ; y <= yMax ; y ++) {
+			int column = 0;
+			for (int x = xMin ; x <= xMax ; x++) {
 				for (int layer = 0 ; layer < 3 ; layer ++) {
 					Tile tile = handler.getWorld().getTile(y,x, layer);
 					if (tile != null)
-						tile.render(g, (int)(x * Tile.TILE_WIDTH), (int)(y * Tile.TILE_HEIGHT));
+						tile.render(g, column, line);
 				}
+				column += 32;
 			}
+			line += 32;
 		}
 		drawGrid(g);
 	}
 
 	@Override
 	public void onClick() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("je clique sur le battlefield !");
 	}
 
 }

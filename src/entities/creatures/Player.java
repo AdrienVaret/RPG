@@ -3,6 +3,7 @@ package entities.creatures;
 import java.awt.Graphics;
 import gfx.Assets;
 import main.Handler;
+import states.BattleState;
 import states.State;
 
 public class Player extends Creature{
@@ -75,8 +76,9 @@ public class Player extends Creature{
 		 
 		 //Check switching bar display
 		 if (handler.getKeyManager().a && !shift) {
-			 //handler.getMouseManager().setUIManager(null);
-			 //State.setState(handler.getGame().gameState);
+			 System.out.print("Generating battlefield, player position = (" + x + ", " + y + ")");
+			 handler.getMouseManager().setUIManager(null);
+			 State.setState(new BattleState(handler, (int)x, (int)y));
 			 shift = true;
 		 } else if (!handler.getKeyManager().a) {
 			 shift = false;
