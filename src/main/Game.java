@@ -6,6 +6,7 @@ import java.awt.image.BufferStrategy;
 import display.Display;
 import gfx.GameCamera;
 import input.KeyManager;
+import input.MouseManager;
 import states.GameState;
 import states.MenuState;
 import states.State;
@@ -29,8 +30,9 @@ public class Game extends Canvas implements Runnable{
 	@SuppressWarnings("unused")
 	private State menuState;
 	
-	//Key manager
+	//Input managers
 	private KeyManager keyManager;
+	private MouseManager mouseManager;
 	
 	//Camera
 	private GameCamera gameCamera;
@@ -43,10 +45,15 @@ public class Game extends Canvas implements Runnable{
 		this.width = width;
 		this.height = height;
 		keyManager = new KeyManager();
+		mouseManager = new MouseManager();
 	}
 	
 	public KeyManager getKeyManager() {
 		return keyManager;
+	}
+	
+	public MouseManager getMouseManager() {
+		return mouseManager;
 	}
 	
 	public GameCamera getGameCamera() {
@@ -65,6 +72,8 @@ public class Game extends Canvas implements Runnable{
 		
 		display = new Display(title, width, height);
 		display.getFrame().addKeyListener(keyManager);
+		display.getFrame().addMouseListener(mouseManager);
+		display.getFrame().addMouseMotionListener(mouseManager);
 		
 		handler = new Handler(this);
 		gameCamera = new GameCamera(handler, 0, 0);

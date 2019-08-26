@@ -20,6 +20,7 @@ public class Player extends Creature{
 	
 	//Action checking
 	private boolean action = false;
+	private boolean shift = false;
 	
 	public Player(Handler handler, float x, float y) {
 	
@@ -59,8 +60,7 @@ public class Player extends Creature{
 		 } else if (!handler.getKeyManager().action){
 			 action = false;
 		 }
-		 
-		 
+		  
 		 //Setting running speed modifications
 		 if (handler.getKeyManager().run) {
 			 speed = DEFAULT_SPEED * 2;
@@ -69,6 +69,14 @@ public class Player extends Creature{
 		 else {
 			 speed = DEFAULT_SPEED;
 			 ANIM_SPEED = DEFAULT_ANIM_SPEED;
+		 }
+		 
+		 //Check switching bar display
+		 if (handler.getKeyManager().a && !shift) {
+			 System.out.println("Shifting character's stats display.");
+			 shift = true;
+		 } else if (!handler.getKeyManager().a) {
+			 shift = false;
 		 }
 		 
 		 //Moving player and updating frame
