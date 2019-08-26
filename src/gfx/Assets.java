@@ -9,8 +9,14 @@ import tiles.Tile;
 public class Assets {
 
 	private static final int width = 32, height = 32;
-	
 	public static ArrayList<ArrayList<BufferedImage>> player;
+	public static BufferedImage[] btn_start;
+	
+	public static void initButtons() {
+		btn_start = new BufferedImage[2];
+		btn_start[0] = ImageLoader.loadImage("/textures/start_button.png");
+		btn_start[1] = ImageLoader.loadImage("/textures/start_button_selected.png");
+	}
 	
 	public static ArrayList<ArrayList<BufferedImage>> init(SpriteSheet sheet) {
 	

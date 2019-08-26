@@ -15,13 +15,15 @@ public class Launcher {
 		SpriteSheet playerSheet = new SpriteSheet(playerSprite);
 		SpriteSheet tilesetSheet = new SpriteSheet(tileset);
 		
+		Assets.initButtons();
+		
 		Assets.setPlayer(playerSheet);
 		Assets.setTileset(tilesetSheet);
 	}
 	
 	public static void main(String[] args) {
 		initTextures();
-		Game game = new Game("Nograd", 640, 640);
+		Game game = new Game("Nograd", 800, 800);
 		game.start();
 	}
 }

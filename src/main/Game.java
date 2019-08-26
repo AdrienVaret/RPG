@@ -26,9 +26,9 @@ public class Game extends Canvas implements Runnable{
 	private Graphics g;
 	
 	//States
-	private State gameState;
+	public State gameState;
 	@SuppressWarnings("unused")
-	private State menuState;
+	public State menuState;
 	
 	//Input managers
 	private KeyManager keyManager;
@@ -72,15 +72,19 @@ public class Game extends Canvas implements Runnable{
 		
 		display = new Display(title, width, height);
 		display.getFrame().addKeyListener(keyManager);
+		
 		display.getFrame().addMouseListener(mouseManager);
 		display.getFrame().addMouseMotionListener(mouseManager);
+		display.getCanvas().addMouseListener(mouseManager);
+		display.getCanvas().addMouseMotionListener(mouseManager);
 		
 		handler = new Handler(this);
 		gameCamera = new GameCamera(handler, 0, 0);
 		
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
-		State.setState(gameState);
+		//State.setState(gameState);
+		State.setState(menuState);
 	}
 	
 	private void tick() {

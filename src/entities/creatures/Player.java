@@ -3,6 +3,7 @@ package entities.creatures;
 import java.awt.Graphics;
 import gfx.Assets;
 import main.Handler;
+import states.State;
 
 public class Player extends Creature{
 	
@@ -55,6 +56,7 @@ public class Player extends Creature{
 		 
 		 //Checking action
 		 if (handler.getKeyManager().action && !action) {
+			 System.out.println(this.getX() + " " + this.getY());
 			 actionWithEntitiesAround(lastDirection);
 			 action = true;
 		 } else if (!handler.getKeyManager().action){
@@ -73,7 +75,8 @@ public class Player extends Creature{
 		 
 		 //Check switching bar display
 		 if (handler.getKeyManager().a && !shift) {
-			 System.out.println("Shifting character's stats display.");
+			 //handler.getMouseManager().setUIManager(null);
+			 //State.setState(handler.getGame().gameState);
 			 shift = true;
 		 } else if (!handler.getKeyManager().a) {
 			 shift = false;
