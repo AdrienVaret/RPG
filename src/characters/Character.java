@@ -1,6 +1,9 @@
 package characters;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
+import spell.Spell;
 
 public abstract class Character {
 
@@ -8,8 +11,9 @@ public abstract class Character {
 		NEUTRAL, FIRE, EARTH, STEEL, WATER, WOOD, LIGHT, DARK
 	};
 	
-	//Character's sprite sheet
+	//Classe's graphics
 	protected BufferedImage sprite;
+	public BufferedImage face;
 	
 	//Character's basics statistics
 	protected String name;
@@ -17,6 +21,11 @@ public abstract class Character {
 	protected int level;
 	protected long experience;
 	protected Type type;
+	
+	
+	//Character's spells
+	protected ArrayList<Spell> spells;
+	protected ArrayList<Spell> allSpells;
 	
 	public Character(String name, String description, Type type, int level, int experience) {
 		this.name = name;
@@ -34,4 +43,19 @@ public abstract class Character {
 		return description;
 	}
 	
+	public ArrayList<Spell> getSpells() {
+		return spells;
+	}
+	
+	public ArrayList<Spell> getAllSpells() {
+		return allSpells;
+	}
+	
+	public BufferedImage getSprite() {
+		return sprite;
+	}
+	
+	public BufferedImage getFace() {
+		return face;
+	}
 }

@@ -15,7 +15,7 @@ public class Launcher {
 		SpriteSheet playerSheet = new SpriteSheet(playerSprite);
 		SpriteSheet tilesetSheet = new SpriteSheet(tileset);
 		
-		Assets.initButtons();
+		Assets.initAssets();
 		
 		Assets.setPlayer(playerSheet);
 		Assets.setTileset(tilesetSheet);

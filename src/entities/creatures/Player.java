@@ -1,6 +1,11 @@
 package entities.creatures;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
+
+import characters.Character;
+import characters.Character.Type;
+import characters.Warrior;
 import gfx.Assets;
 import main.Handler;
 import states.BattleState;
@@ -24,6 +29,9 @@ public class Player extends Creature{
 	private boolean action = false;
 	private boolean shift = false;
 	
+	//Team
+	private ArrayList<Character> team;
+	
 	public Player(Handler handler, float x, float y) {
 	
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, TypeAction.NONE);
@@ -42,6 +50,12 @@ public class Player extends Creature{
 		//Initialising timer
 		timer = 0;
 		lastTime = System.currentTimeMillis();
+		
+		//Initializing team
+		team = new ArrayList<Character>();
+		
+		//Temporary
+		team.add(new Warrior("Anta-Draknes", 50, 0, Type.EARTH, 1000, 800, 600, 500));
 	}
 
 	@Override
@@ -76,10 +90,8 @@ public class Player extends Creature{
 		 
 		 //Check switching bar display
 		 if (handler.getKeyManager().a && !shift) {
-			 System.out.print("Generating battlefield, player position = (" + x + ", " + y + ")");
 			 handler.getMouseManager().setUIManager(null);
-			 handler.getGame().resize(1200, 822);
-			 State.setState(new BattleState(handler, (int)x, (int)y));
+			 State.setState(new BattleState(handler, (int)x, (int)y, team)); 
 			 shift = true;
 		 } else if (!handler.getKeyManager().a) {
 			 shift = false;
@@ -206,5 +218,17 @@ public class Player extends Creature{
 	
 	public void turn(int direction) {
 		//DO_NOTHING
+	}
+	
+	public ArrayList<Character> getTeam() {
+		return team;
+	}
+	
+	public void addCharacter(Character c) {
+		team.add(c);
+	}
+	
+	public void removeCharacter(Character c) {
+		team.remove(c);
 	}
 }

@@ -1,7 +1,11 @@
 package gfx;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import tiles.Tile;
@@ -9,13 +13,30 @@ import tiles.Tile;
 public class Assets {
 
 	private static final int width = 32, height = 32;
+	
 	public static ArrayList<ArrayList<BufferedImage>> player;
 	public static BufferedImage[] btn_start;
 	
-	public static void initButtons() {
+	public static BufferedImage blackTile48px;
+	
+	public static Font playerNameFont;
+	
+	public static void initAssets() {
+		
 		btn_start = new BufferedImage[2];
 		btn_start[0] = ImageLoader.loadImage("/textures/start_button.png");
 		btn_start[1] = ImageLoader.loadImage("/textures/start_button_selected.png");
+		
+		blackTile48px = ImageLoader.loadImage("/textures/black_tile_48.png");
+		
+		try {
+			playerNameFont = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/Achafexp.ttf"));
+			playerNameFont = playerNameFont.deriveFont(30f);
+		} catch (FontFormatException | IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
 	public static ArrayList<ArrayList<BufferedImage>> init(SpriteSheet sheet) {
