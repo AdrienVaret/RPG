@@ -21,6 +21,10 @@ public class Assets {
 	
 	public static Font playerNameFont;
 	
+	public static BufferedImage background;
+	
+	public static BufferedImage attackIcon, defenseIcon, moveIcon;
+	
 	public static void initAssets() {
 		
 		btn_start = new BufferedImage[2];
@@ -36,6 +40,11 @@ public class Assets {
 			e.printStackTrace();
 		}
 		
+		background = ImageLoader.loadImage("/textures/background.png");
+		
+		attackIcon = ImageLoader.loadImage("/textures/dice_icons/attack_icon.png");
+		defenseIcon = ImageLoader.loadImage("/textures/dice_icons/defense_icon.png");
+		moveIcon = ImageLoader.loadImage("/textures/dice_icons/move_icon.png");
 		
 	}
 	

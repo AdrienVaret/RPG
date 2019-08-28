@@ -192,14 +192,7 @@ public class Battlefield extends UIObject{
 		
 	}
 
-	@Override
-	public void render(Graphics g) {
-		
-		//Setting background
-		g.setColor(Color.DARK_GRAY);
-		g.fillRect(0, 0, 1136, 800);
-		
-		//Rendering battle grid
+	public void renderBattleGrid(Graphics g) {
 		int line = 0;
 		for (int y = yMin ; y <= yMax ; y ++) {
 			int column = 0;
@@ -214,19 +207,11 @@ public class Battlefield extends UIObject{
 			line += 32;
 		}
 		drawGrid(g);
-		
-		//Rendering current player's face
-		g.drawImage(currentPlayer().getFace(), 800, 0, 96, 96, null);
-		
-		// rendering current player's name
-		g.setColor(Color.WHITE);
-		g.setFont(Assets.playerNameFont);
-		g.drawString(currentPlayer().getName(), 920, 48);
+	}
 	
-		
-		//Rendering spells icons
+	public void renderSpellsIcons(Graphics g) {
 		int column = 800;
-		line = 640;
+		int line = 640;
 		
 		for (int i = 0 ; i < 14 ; i++) {
 			
@@ -246,12 +231,40 @@ public class Battlefield extends UIObject{
 			
 			column += 48;
 		}
+	}
+	
+	public void renderIconsPool(Graphics g) {
+		g.drawImage(Assets.attackIcon, 800, 96, 48, 48, null);
+	}
+	
+	@Override
+	public void render(Graphics g) {
+		
+		//Setting background
+		g.drawImage(Assets.background, 0, 0, 1136, 822, null);
+		
+		//Rendering battle grid
+		renderBattleGrid(g);
+		
+		//Rendering current player's face
+		g.drawImage(currentPlayer().getFace(), 800, 0, 96, 96, null);
+		
+		// rendering current player's name
+		g.setColor(Color.WHITE);
+		g.setFont(Assets.playerNameFont);
+		g.drawString(currentPlayer().getName(), 920, 48);
+	
+		
+		//Rendering spells icons
+		renderSpellsIcons(g);
 		
 		//Rendering hovering spell
 		if (hoveringSpell != null) {
-			g.setColor(Color.BLACK);
 			g.drawString(hoveringSpell.getName(), 850, 210);
 		}
+	
+		
+		renderIconsPool(g);
 	}
 	
 	// Area checkers
