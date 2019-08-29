@@ -23,7 +23,8 @@ public class Assets {
 	
 	public static BufferedImage background;
 	
-	public static BufferedImage attackIcon, defenseIcon, moveIcon;
+	public static BufferedImage battleGui;
+	public static BufferedImage battleGuiBrackets;
 	
 	public static void initAssets() {
 		
@@ -33,6 +34,9 @@ public class Assets {
 		
 		blackTile48px = ImageLoader.loadImage("/textures/black_tile_48.png");
 		
+		battleGui = ImageLoader.loadImage("/textures/battlefield_ressources/battle_gui_wo_brackets.png");
+		battleGuiBrackets = ImageLoader.loadImage("/textures/battlefield_ressources/battle_gui_brackets.png");
+		
 		try {
 			playerNameFont = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/Achafexp.ttf"));
 			playerNameFont = playerNameFont.deriveFont(30f);
@@ -41,10 +45,6 @@ public class Assets {
 		}
 		
 		background = ImageLoader.loadImage("/textures/background.png");
-		
-		attackIcon = ImageLoader.loadImage("/textures/dice_icons/attack_icon.png");
-		defenseIcon = ImageLoader.loadImage("/textures/dice_icons/defense_icon.png");
-		moveIcon = ImageLoader.loadImage("/textures/dice_icons/move_icon.png");
 		
 	}
 	

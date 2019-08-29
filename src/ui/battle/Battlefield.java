@@ -6,11 +6,13 @@ import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import characters.Character;
 import gfx.Assets;
+import gfx.ImageLoader;
 import main.Handler;
 import spell.Spell;
 import tiles.Tile;
@@ -38,10 +40,10 @@ public class Battlefield extends UIObject{
 	private Spell hoveringSpell;
 	
 	public Battlefield(Handler handler, int x, int y, ArrayList<Character> team) {
-		super(0, 0, 1136, 800);
+		super(0, 0, 1200, 800);
 		
 		this.handler = handler;
-		handler.getGame().resize(1136, 822);
+		handler.getGame().resize(1200, 822);
 		
 		//Defining bounds
 		boundsGridBattle = new Rectangle(0, 0, GRID_DIMENSION * Tile.TILE_WIDTH, GRID_DIMENSION * Tile.TILE_HEIGHT);
@@ -209,7 +211,12 @@ public class Battlefield extends UIObject{
 		drawGrid(g);
 	}
 	
+	public void renderSpellBar(Graphics g) {
+		
+	}
+	
 	public void renderSpellsIcons(Graphics g) {
+		/*
 		int column = 800;
 		int line = 640;
 		
@@ -230,22 +237,36 @@ public class Battlefield extends UIObject{
 			}
 			
 			column += 48;
+			
 		}
+		*/
+		
+		int column = 861;
+		
+		BufferedImage test = ImageLoader.loadImage("/textures/battlefield_ressources/test.png");
+		g.drawImage(test, 800, 640, 312, 127, null);
 	}
 	
-	public void renderIconsPool(Graphics g) {
-		g.drawImage(Assets.attackIcon, 800, 96, 48, 48, null);
+	public void renderBattleGui(Graphics g) {
+		
+		g.drawImage(Assets.battleGui, 800, 0, 400, 800, null);
+		
+		g.drawImage(Assets.battleGuiBrackets, 800, 0, 400, 800, null);
+		
 	}
 	
 	@Override
 	public void render(Graphics g) {
 		
 		//Setting background
-		g.drawImage(Assets.background, 0, 0, 1136, 822, null);
+		g.drawImage(Assets.background, 0, 0, 1200, 822, null);
 		
 		//Rendering battle grid
 		renderBattleGrid(g);
 		
+		renderBattleGui(g);
+		
+/*		
 		//Rendering current player's face
 		g.drawImage(currentPlayer().getFace(), 800, 0, 96, 96, null);
 		
@@ -265,6 +286,10 @@ public class Battlefield extends UIObject{
 	
 		
 		renderIconsPool(g);
+*/
+		
+		
+		
 	}
 	
 	// Area checkers
