@@ -1,18 +1,12 @@
 package ui.battle;
 
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import characters.Character;
 import gfx.Assets;
-import gfx.ImageLoader;
 import main.Handler;
 import spell.Spell;
 import tiles.Tile;
@@ -30,6 +24,7 @@ public class Battlefield extends UIObject{
 	//Bounds
 	private Rectangle boundsGridBattle;
 	private Rectangle boundsSpells;
+	private Rectangle boundsItemButton;
 	
 	private Cell[][] grid;
 	
@@ -47,7 +42,8 @@ public class Battlefield extends UIObject{
 		
 		//Defining bounds
 		boundsGridBattle = new Rectangle(0, 0, GRID_DIMENSION * Tile.TILE_WIDTH, GRID_DIMENSION * Tile.TILE_HEIGHT);
-		boundsSpells = new Rectangle(800, 640, 336, 96);
+		boundsSpells = new Rectangle(861, 640, 273, 76);
+		boundsItemButton = new Rectangle(874, 732, 121, 47);
 		
 		halfGrid = (GRID_DIMENSION - 1) / 2;
 		grid = new Cell[GRID_DIMENSION][GRID_DIMENSION];
@@ -86,11 +82,10 @@ public class Battlefield extends UIObject{
 		int yCase = (int)Math.floor(y / Tile.TILE_HEIGHT);
 		return grid[xCase][yCase];
 	}
-	
+
 	public Spell getSpell(int x, int y) {
-		
-		int xSpell = (int) Math.floor((x - 800) / 48);
-		int ySpell = (int) Math.floor((y - 640) / 48);
+		int xSpell = (int) Math.floor((x - 861) / 39);
+		int ySpell = (int) Math.floor((y - 640) / 38);
 		
 		int index = 7 * ySpell + xSpell;
 		
@@ -211,10 +206,6 @@ public class Battlefield extends UIObject{
 		drawGrid(g);
 	}
 	
-	public void renderSpellBar(Graphics g) {
-		
-	}
-	
 	public void renderSpellsIcons(Graphics g) {
 		int column = 861;
 		int line = 640;
@@ -232,8 +223,6 @@ public class Battlefield extends UIObject{
 			
 			if (spell != null)
 				g.drawImage(spell.getIcon(), column, line, 38, 38, null);
-			else 
-				g.drawImage(Assets.blackTile48px, column, line, 38, 38, null);
 			
 			column += 40;
 		}
@@ -241,15 +230,21 @@ public class Battlefield extends UIObject{
 	
 	public void renderBattleGui(Graphics g) {
 		
+		g.setColor(Color.WHITE);
+		
+		g.drawImage(currentPlayer().getFace(), 869, 18, 126, 126, null);
+		
 		g.drawImage(Assets.battleGui, 800, 0, 400, 800, null);
 		
 		g.drawImage(Assets.hpBar, 1000, 53, 131, 25, null);
+		g.drawImage(Assets.xpBar, 1000, 80, 131, 7, null);
 		
 		renderSpellsIcons(g);
 		
 		g.drawImage(Assets.battleGuiBrackets, 800, 0, 400, 800, null);
 		
 	}
+
 	
 	@Override
 	public void render(Graphics g) {
@@ -263,6 +258,9 @@ public class Battlefield extends UIObject{
 		//Rendering battle GUI
 		renderBattleGui(g);	
 
+		//Rendering hovering spell
+		if (hoveringSpell != null)
+			g.drawString(hoveringSpell.getName(), 893, 353);
 	}
 	
 	// Area checkers
@@ -273,6 +271,10 @@ public class Battlefield extends UIObject{
 	
 	public boolean clickOnSpellsGrid(int x, int y) {
 		return boundsSpells.contains(x, y);
+	}
+	
+	public boolean clickOnItemButton(int x, int y) {
+		return boundsItemButton.contains(x, y);
 	}
 	
 	@Override
@@ -291,6 +293,10 @@ public class Battlefield extends UIObject{
 		else if (clickOnSpellsGrid(mouseX, mouseY)){
 			System.out.println("Clicking on spell grid");
 		}
+		
+		else if (clickOnItemButton(mouseX, mouseY)) {
+			System.out.println("Clicking on item button");
+		}
 	}
 
 	@Override
@@ -301,12 +307,11 @@ public class Battlefield extends UIObject{
 		else
 			hovering = false;
 		
+		
 		if (clickOnSpellsGrid(e.getX(), e.getY()))
 			hoveringSpell = getSpell(e.getX(), e.getY());
 		else 
 			hoveringSpell = null;
-			
-		
 			
 	}
 }

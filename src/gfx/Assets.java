@@ -26,7 +26,7 @@ public class Assets {
 	public static BufferedImage battleGui;
 	public static BufferedImage battleGuiBrackets;
 	
-	public static BufferedImage hpBar;
+	public static BufferedImage hpBar, xpBar;
 	
 	public static void initAssets() {
 		
@@ -40,7 +40,7 @@ public class Assets {
 		battleGuiBrackets = ImageLoader.loadImage("/textures/battlefield_ressources/battle_gui_brackets.png");
 		
 		hpBar = ImageLoader.loadImage("/textures/battlefield_ressources/hp_bar.png");
-		
+		xpBar = ImageLoader.loadImage("/textures/battlefield_ressources/xp_bar.png");
 		try {
 			playerNameFont = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/Achafexp.ttf"));
 			playerNameFont = playerNameFont.deriveFont(30f);
