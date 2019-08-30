@@ -216,40 +216,36 @@ public class Battlefield extends UIObject{
 	}
 	
 	public void renderSpellsIcons(Graphics g) {
-		/*
-		int column = 800;
+		int column = 861;
 		int line = 640;
-		
 		for (int i = 0 ; i < 14 ; i++) {
 			
+			Spell spell;
+			if (i < currentPlayer().getSpells().size())
+				spell = currentPlayer().getSpells().get(i);
+			else spell = null;
+			
 			if (i == 7) {
-				line += 48;
-				column = 800;
+				column = 861;
+				line = 678;
 			}
 			
-			if (i < currentPlayer().getSpells().size()) {
-				Spell spell = currentPlayer().getSpells().get(i);
-				g.drawImage(spell.getIcon(), column, line, 48, 48, null);
-			}
+			if (spell != null)
+				g.drawImage(spell.getIcon(), column, line, 38, 38, null);
+			else 
+				g.drawImage(Assets.blackTile48px, column, line, 38, 38, null);
 			
-			else {
-				g.drawImage(Assets.blackTile48px, column, line, 48, 48, null);
-			}
-			
-			column += 48;
-			
+			column += 40;
 		}
-		*/
-		
-		int column = 861;
-		
-		BufferedImage test = ImageLoader.loadImage("/textures/battlefield_ressources/test.png");
-		g.drawImage(test, 800, 640, 312, 127, null);
 	}
 	
 	public void renderBattleGui(Graphics g) {
 		
 		g.drawImage(Assets.battleGui, 800, 0, 400, 800, null);
+		
+		g.drawImage(Assets.hpBar, 1000, 53, 131, 25, null);
+		
+		renderSpellsIcons(g);
 		
 		g.drawImage(Assets.battleGuiBrackets, 800, 0, 400, 800, null);
 		
@@ -264,32 +260,9 @@ public class Battlefield extends UIObject{
 		//Rendering battle grid
 		renderBattleGrid(g);
 		
-		renderBattleGui(g);
-		
-/*		
-		//Rendering current player's face
-		g.drawImage(currentPlayer().getFace(), 800, 0, 96, 96, null);
-		
-		// rendering current player's name
-		g.setColor(Color.WHITE);
-		g.setFont(Assets.playerNameFont);
-		g.drawString(currentPlayer().getName(), 920, 48);
-	
-		
-		//Rendering spells icons
-		renderSpellsIcons(g);
-		
-		//Rendering hovering spell
-		if (hoveringSpell != null) {
-			g.drawString(hoveringSpell.getName(), 850, 210);
-		}
-	
-		
-		renderIconsPool(g);
-*/
-		
-		
-		
+		//Rendering battle GUI
+		renderBattleGui(g);	
+
 	}
 	
 	// Area checkers
