@@ -19,12 +19,13 @@ public class Assets {
 	
 	public static BufferedImage blackTile48px;
 	
-	public static Font playerNameFont;
+	public static Font optimusPrincepsSemiBold;
 	
 	public static BufferedImage background;
 	
 	public static BufferedImage battleGui;
 	public static BufferedImage battleGuiBrackets;
+	public static BufferedImage spellDescription;
 	
 	public static BufferedImage hpBar, xpBar;
 	
@@ -38,12 +39,14 @@ public class Assets {
 		
 		battleGui = ImageLoader.loadImage("/textures/battlefield_ressources/battle_gui_wo_brackets.png");
 		battleGuiBrackets = ImageLoader.loadImage("/textures/battlefield_ressources/battle_gui_brackets.png");
+		spellDescription = ImageLoader.loadImage("/textures/battlefield_ressources/spell_descr.png");
 		
 		hpBar = ImageLoader.loadImage("/textures/battlefield_ressources/hp_bar.png");
 		xpBar = ImageLoader.loadImage("/textures/battlefield_ressources/xp_bar.png");
+		
 		try {
-			playerNameFont = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/Achafexp.ttf"));
-			playerNameFont = playerNameFont.deriveFont(30f);
+			optimusPrincepsSemiBold = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/OptimusPrincepsSemiBold.ttf"));
+			optimusPrincepsSemiBold = optimusPrincepsSemiBold.deriveFont(30f);
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();
 		}

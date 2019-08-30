@@ -88,7 +88,7 @@ public class Spell {
 		spells.add(new Spell("Danse de l'eau", "Inflige des dégats moyens à un ennemi, ajoute un icone de mouvement à chaque début de tour pendant 3 tours", 
 	             25, Type.FIRE, TypeSpell.OFFENSIVE, "/textures/spell_icons/danse_de_l_eau_round.png"));
 		
-		spells.add(new Spell("Volonté", "Ajoute 3 icones d'attaque", 
+		spells.add(new Spell("Volonte", "Ajoute 3 icones d'attaque", 
 	               3, Type.NEUTRAL, TypeSpell.BUFF, "/textures/spell_icons/volonte_round.png"));
 		
 		spells.add(new Spell("Rage", "Inflige de lourds dégats à un ennemi, augmente les dommages de 15% à chaque utilisation (max 3), bonus perdu si non utilisé", 

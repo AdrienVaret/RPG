@@ -241,6 +241,14 @@ public class Battlefield extends UIObject{
 		
 		renderSpellsIcons(g);
 		
+		//Rendering hovering spell
+		if (hoveringSpell != null) {
+			g.setColor(Color.BLACK);
+			g.setFont(Assets.optimusPrincepsSemiBold);
+			g.drawImage(Assets.spellDescription, 800, 0, 400, 800, null);
+			g.drawString(hoveringSpell.getName(), 900, 306);
+		}
+		
 		g.drawImage(Assets.battleGuiBrackets, 800, 0, 400, 800, null);
 		
 	}
@@ -257,10 +265,7 @@ public class Battlefield extends UIObject{
 		
 		//Rendering battle GUI
 		renderBattleGui(g);	
-
-		//Rendering hovering spell
-		if (hoveringSpell != null)
-			g.drawString(hoveringSpell.getName(), 893, 353);
+			
 	}
 	
 	// Area checkers
