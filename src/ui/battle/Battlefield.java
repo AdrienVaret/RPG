@@ -9,8 +9,11 @@ import characters.Character;
 import gfx.Assets;
 import main.Handler;
 import spell.Spell;
+import states.BattleState;
+import states.State;
 import tiles.Tile;
 import ui.UIObject;
+import utils.Utils;
 
 public class Battlefield extends UIObject{
 
@@ -25,6 +28,10 @@ public class Battlefield extends UIObject{
 	private Rectangle boundsGridBattle;
 	private Rectangle boundsSpells;
 	private Rectangle boundsItemButton;
+	private Rectangle boundsRunButton;
+	
+	//Spell description rectangle
+	private Rectangle spellDescriptionRectangle;
 	
 	private Cell[][] grid;
 	
@@ -44,6 +51,9 @@ public class Battlefield extends UIObject{
 		boundsGridBattle = new Rectangle(0, 0, GRID_DIMENSION * Tile.TILE_WIDTH, GRID_DIMENSION * Tile.TILE_HEIGHT);
 		boundsSpells = new Rectangle(861, 640, 273, 76);
 		boundsItemButton = new Rectangle(874, 732, 121, 47);
+		boundsRunButton = new Rectangle (1005, 732, 121, 47);
+		
+		spellDescriptionRectangle = new Rectangle(887, 284, 212, 20); //x = 900 initialement
 		
 		halfGrid = (GRID_DIMENSION - 1) / 2;
 		grid = new Cell[GRID_DIMENSION][GRID_DIMENSION];
@@ -75,6 +85,12 @@ public class Battlefield extends UIObject{
 			}
 			line ++;
 		}
+	}
+	
+	public void quit() {
+		handler.getMouseManager().setUIManager(null);
+		handler.getGame().resize(800, 800);
+		State.setState(handler.getGame().gameState); 
 	}
 	
 	public Cell getCase(int x, int y) {
@@ -189,6 +205,10 @@ public class Battlefield extends UIObject{
 		
 	}
 
+	/*
+	 * Rendering methods
+	 */
+	
 	public void renderBattleGrid(Graphics g) {
 		int line = 0;
 		for (int y = yMin ; y <= yMax ; y ++) {
@@ -243,10 +263,10 @@ public class Battlefield extends UIObject{
 		
 		//Rendering hovering spell
 		if (hoveringSpell != null) {
-			g.setColor(Color.BLACK);
+			g.setColor(Color.WHITE);
 			g.setFont(Assets.optimusPrincepsSemiBold);
 			g.drawImage(Assets.spellDescription, 800, 0, 400, 800, null);
-			g.drawString(hoveringSpell.getName(), 900, 306);
+			Utils.centerString(g, spellDescriptionRectangle, hoveringSpell.getName(), Assets.optimusPrincepsSemiBold);
 		}
 		
 		g.drawImage(Assets.battleGuiBrackets, 800, 0, 400, 800, null);
@@ -268,7 +288,9 @@ public class Battlefield extends UIObject{
 			
 	}
 	
-	// Area checkers
+	/*
+	 * Area checkers
+	 */
 	
 	public boolean clickOnBattleGrid(int x, int y) {
 		return boundsGridBattle.contains(x, y);
@@ -281,6 +303,14 @@ public class Battlefield extends UIObject{
 	public boolean clickOnItemButton(int x, int y) {
 		return boundsItemButton.contains(x, y);
 	}
+	
+	public boolean clickOnRunButton(int x, int y) {
+		return boundsRunButton.contains(x, y);
+	}
+	
+	/*
+	 * Mouse-related methods
+	 */
 	
 	@Override
 	public void onClick() {
@@ -301,6 +331,11 @@ public class Battlefield extends UIObject{
 		
 		else if (clickOnItemButton(mouseX, mouseY)) {
 			System.out.println("Clicking on item button");
+		}
+		
+		else if (clickOnRunButton(mouseX, mouseY)) {
+			System.out.println("Fuite");
+			quit();
 		}
 	}
 

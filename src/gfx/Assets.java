@@ -46,7 +46,7 @@ public class Assets {
 		
 		try {
 			optimusPrincepsSemiBold = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/OptimusPrincepsSemiBold.ttf"));
-			optimusPrincepsSemiBold = optimusPrincepsSemiBold.deriveFont(30f);
+			optimusPrincepsSemiBold = optimusPrincepsSemiBold.deriveFont(25f);
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();
 		}

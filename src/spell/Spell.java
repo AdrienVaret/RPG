@@ -82,7 +82,7 @@ public class Spell {
 		spells.add(new Spell("Tranche", "Inflige de gros dégats à un ennemi", 
 	             30, Type.STEEL, TypeSpell.OFFENSIVE, "/textures/spell_icons/tranche_round.png"));
 		
-		spells.add(new Spell("Lance enflammée", "Inflige des dégats en ligne", 
+		spells.add(new Spell("Lance enflammee", "Inflige des dégats en ligne", 
 	             25, Type.FIRE, TypeSpell.OFFENSIVE, "/textures/spell_icons/lance_enflamee_round.png"));
 		
 		spells.add(new Spell("Danse de l'eau", "Inflige des dégats moyens à un ennemi, ajoute un icone de mouvement à chaque début de tour pendant 3 tours", 
