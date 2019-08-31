@@ -22,6 +22,8 @@ public abstract class Character {
 	protected long experience;
 	protected Type type;
 	
+	//Classe's current stats without stats
+	protected int HP, ATK, DEF, SPEED;
 	
 	//Character's spells
 	protected ArrayList<Spell> spells;

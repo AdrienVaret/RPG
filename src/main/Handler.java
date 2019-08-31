@@ -3,15 +3,18 @@ package main;
 import gfx.GameCamera;
 import input.KeyManager;
 import input.MouseManager;
+import ui.Menu;
 import worlds.World;
 
 public class Handler {
 
 	private Game game;
 	private World world;
+	private Menu menu;
 	
 	public Handler(Game game) {
 		 this.game = game;
+		 menu = new Menu();
 	}
 
 	public Game getGame() {
@@ -36,6 +39,10 @@ public class Handler {
 	
 	public int getHeight() {
 		return game.height;
+	}
+	
+	public Menu getMenu() {
+		return menu;
 	}
 	
 	public KeyManager getKeyManager() {

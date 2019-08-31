@@ -29,20 +29,27 @@ public class Assets {
 	
 	public static BufferedImage hpBar, xpBar;
 	
+	//Menu interface
+	public static BufferedImage menuBar;
+	
 	public static void initAssets() {
 		
+		//Loading main menu textures
 		btn_start = new BufferedImage[2];
 		btn_start[0] = ImageLoader.loadImage("/textures/start_button.png");
 		btn_start[1] = ImageLoader.loadImage("/textures/start_button_selected.png");
 		
-		blackTile48px = ImageLoader.loadImage("/textures/black_tile_48.png");
+		//Loading game menu textures
+		menuBar = ImageLoader.loadImage("/textures/menu_buttons/menu_bar.png");
 		
+		//Loading battlefield textures
 		battleGui = ImageLoader.loadImage("/textures/battlefield_ressources/battle_gui_wo_brackets.png");
 		battleGuiBrackets = ImageLoader.loadImage("/textures/battlefield_ressources/battle_gui_brackets.png");
 		spellDescription = ImageLoader.loadImage("/textures/battlefield_ressources/spell_descr.png");
 		
 		hpBar = ImageLoader.loadImage("/textures/battlefield_ressources/hp_bar.png");
 		xpBar = ImageLoader.loadImage("/textures/battlefield_ressources/xp_bar.png");
+
 		
 		try {
 			optimusPrincepsSemiBold = Font.createFont(Font.TRUETYPE_FONT, new File("res/fonts/OptimusPrincepsSemiBold.ttf"));

@@ -14,9 +14,6 @@ public class Warrior extends Character{
 	//Character's progression curve
 	private int [] EXPCurve, HPCurve, ATKCurve, DEFCurve, SPEEDCurve;
 	
-	//Classe's current stats
-	private int HP, ATK, DEF, SPEED;
-	
 	//Character's items
 	//TODO 
 	

@@ -28,6 +28,7 @@ public class Player extends Creature{
 	//Action checking
 	private boolean action = false;
 	private boolean shift = false;
+	private boolean menu = false;
 	
 	//Team
 	private ArrayList<Character> team;
@@ -68,6 +69,15 @@ public class Player extends Creature{
 	private void getInput() {
 		 xMove = 0;
 		 yMove = 0;
+		 
+		 
+		 //checking menu
+		 if (handler.getKeyManager().m && !menu) {
+			 handler.getMenu().switchVisibility();
+			 menu = true;
+		 } else if (!handler.getKeyManager().m) {
+			 menu = false;
+		 }
 		 
 		 //Checking action
 		 if (handler.getKeyManager().action && !action) {

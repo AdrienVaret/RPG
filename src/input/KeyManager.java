@@ -10,6 +10,8 @@ public class KeyManager implements KeyListener{
 	public boolean run;
 	public boolean action;
 	public boolean a;
+	public boolean m;
+	public boolean shift;
 	
 	public KeyManager() {
 		keys = new boolean[256];
@@ -38,5 +40,7 @@ public class KeyManager implements KeyListener{
 		run = keys[KeyEvent.VK_SHIFT];
 		action = keys[KeyEvent.VK_SPACE];
 		a = keys[KeyEvent.VK_A];
+		m = keys[KeyEvent.VK_M];
+		shift = keys[KeyEvent.VK_SHIFT];
 	}
 }

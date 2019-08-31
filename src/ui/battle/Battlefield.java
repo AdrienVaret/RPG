@@ -9,9 +9,10 @@ import characters.Character;
 import gfx.Assets;
 import main.Handler;
 import spell.Spell;
-import states.BattleState;
 import states.State;
 import tiles.Tile;
+import ui.Menu;
+import ui.UIManager;
 import ui.UIObject;
 import utils.Utils;
 
@@ -87,9 +88,14 @@ public class Battlefield extends UIObject{
 		}
 	}
 	
-	public void quit() {
+	public void quit() {	
 		handler.getMouseManager().setUIManager(null);
 		handler.getGame().resize(800, 800);
+		
+		UIManager uiManager = new UIManager(handler);
+		handler.getMouseManager().setUIManager(uiManager);
+		uiManager.addObject(handler.getMenu());
+		
 		State.setState(handler.getGame().gameState); 
 	}
 	
