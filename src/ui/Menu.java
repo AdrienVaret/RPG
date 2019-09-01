@@ -21,10 +21,10 @@ public class Menu extends UIObject{
 	}
 
 	@Override
-	public void render(Graphics g) {
-		if (visible) {
-			g.drawImage(Assets.menuBar, 0, 0, 800, 161, null);
-		}
+	public void render(Graphics g) {	
+		g.drawImage(Assets.menuBar, 0, 0, 299, 161, null);
+		if (visible)
+			g.drawImage(Assets.menuButtons, 0, 0, 299, 161, null);
 	}
 
 	@Override

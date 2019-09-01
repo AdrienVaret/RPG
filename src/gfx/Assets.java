@@ -31,6 +31,7 @@ public class Assets {
 	
 	//Menu interface
 	public static BufferedImage menuBar;
+	public static BufferedImage menuButtons;
 	
 	public static void initAssets() {
 		
@@ -41,6 +42,7 @@ public class Assets {
 		
 		//Loading game menu textures
 		menuBar = ImageLoader.loadImage("/textures/menu_buttons/menu_bar.png");
+		menuButtons = ImageLoader.loadImage("/textures/menu_buttons/menu_buttons.png");
 		
 		//Loading battlefield textures
 		battleGui = ImageLoader.loadImage("/textures/battlefield_ressources/battle_gui_wo_brackets.png");
