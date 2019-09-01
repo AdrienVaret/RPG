@@ -57,6 +57,8 @@ public class Player extends Creature{
 		
 		//Temporary
 		team.add(new Warrior("Anta-Draknes", 50, 0, Type.EARTH, 1000, 800, 600, 500));
+		
+		handler.getMenu().setCurrentCharacter(team.get(0));
 	}
 
 	@Override

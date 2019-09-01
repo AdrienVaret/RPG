@@ -17,7 +17,7 @@ public class Assets {
 	public static ArrayList<ArrayList<BufferedImage>> player;
 	public static BufferedImage[] btn_start;
 	
-	public static BufferedImage blackTile48px;
+	public static BufferedImage blackTile;
 	
 	public static Font optimusPrincepsSemiBold;
 	
@@ -61,6 +61,7 @@ public class Assets {
 		}
 		
 		background = ImageLoader.loadImage("/textures/background.png");
+		//blackTile = ImageLoader.loadImage("/textures/")
 		
 	}
 	

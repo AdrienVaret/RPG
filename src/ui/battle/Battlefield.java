@@ -42,6 +42,8 @@ public class Battlefield extends UIObject{
 	
 	private Spell hoveringSpell;
 	
+	private boolean active;
+	
 	public Battlefield(Handler handler, int x, int y, ArrayList<Character> team) {
 		super(0, 0, 1200, 800);
 		
@@ -61,6 +63,8 @@ public class Battlefield extends UIObject{
 		this.team = team;
 		
 		playerTurn = 0;
+		
+		active = true;
 		
 		computeArea(x, y);
 		initGrid();
@@ -89,6 +93,8 @@ public class Battlefield extends UIObject{
 	}
 	
 	public void quit() {	
+		active = false;
+		
 		handler.getMouseManager().setUIManager(null);
 		handler.getGame().resize(800, 800);
 		
@@ -283,14 +289,16 @@ public class Battlefield extends UIObject{
 	@Override
 	public void render(Graphics g) {
 		
-		//Setting background
-		g.drawImage(Assets.background, 0, 0, 1200, 822, null);
+		if (active) {
+			//Setting background
+			g.drawImage(Assets.background, 0, 0, 1200, 822, null);
 		
-		//Rendering battle grid
-		renderBattleGrid(g);
+			//Rendering battle grid
+			renderBattleGrid(g);
 		
-		//Rendering battle GUI
-		renderBattleGui(g);	
+			//Rendering battle GUI
+			renderBattleGui(g);	
+		}
 			
 	}
 	
